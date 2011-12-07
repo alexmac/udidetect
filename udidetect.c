@@ -55,7 +55,7 @@ void handle_device(am_device *device)
 		char screen[15] = "";
 		detect_screen(screen, product_type, ios_version);
 		
-		printf("%s:\n  UDID	 : %s\n	 screen: %s\n\n", device_name, udid, screen);
+		printf("%s:\n  UDID  : %s\n  screen: %s\n\n", device_name, udid, screen);
 	}
 	else
 	{
