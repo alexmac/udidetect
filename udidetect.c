@@ -1,6 +1,6 @@
 #include <string.h>
 #include "MobileDevice.h"
-   																																																										 
+
 void detect_screen(char *screen, const char *product_type, const char *ios_version_full);
 void handle_device(am_device *device);
 void device_callback(struct am_device_notification_callback_info *info, void *arg);
@@ -45,17 +45,17 @@ void handle_device(am_device *device)
 	{
 		AMDeviceConnect(device);
 		assert(AMDeviceIsPaired(device));
-	    assert(AMDeviceValidatePairing(device) == 0);
-	    assert(AMDeviceStartSession(device) == 0);
+		assert(AMDeviceValidatePairing(device) == 0);
+		assert(AMDeviceStartSession(device) == 0);
 	
-		const char *device_name  = CFStringGetCStringPtr(AMDeviceCopyValue(device, 0, CFSTR("DeviceName")),     encoding);	   
-		const char *product_type = CFStringGetCStringPtr(AMDeviceCopyValue(device, 0, CFSTR("ProductType")),    encoding);		
-	    const char *ios_version  = CFStringGetCStringPtr(AMDeviceCopyValue(device, 0, CFSTR("ProductVersion")), encoding);		
+		const char *device_name  = CFStringGetCStringPtr(AMDeviceCopyValue(device, 0, CFSTR("DeviceName")),     encoding);
+		const char *product_type = CFStringGetCStringPtr(AMDeviceCopyValue(device, 0, CFSTR("ProductType")),    encoding);
+		const char *ios_version  = CFStringGetCStringPtr(AMDeviceCopyValue(device, 0, CFSTR("ProductVersion")), encoding);
 	   
 		char screen[15] = "";
-        detect_screen(screen, product_type, ios_version);
+		detect_screen(screen, product_type, ios_version);
 		
-		printf("%s:\n  UDID  : %s\n  screen: %s\n\n", device_name, udid, screen);
+		printf("%s:\n  UDID	 : %s\n	 screen: %s\n\n", device_name, udid, screen);
 	}
 	else
 	{
@@ -72,20 +72,20 @@ void device_callback(struct am_device_notification_callback_info *info, void *ar
 			default:
 				break;
 	}  
-}    
+}	 
 
 int main(int argc, char *argv[])
-{   
+{
 	if (argc > 1) {
 		if(strcmp(argv[1], "-h") == 0)
 		{
-        	printf("usage: %s [-v|-z]\n", argv[0]);
-        	exit(1);
+			printf("usage: %s [-v|-z]\n", argv[0]);
+			exit(1);
 		}
 		else zucchini = (strcmp(argv[1], "-z") == 0);
-    }
-   	
+	}
+
 	struct am_device_notification *notify;
 	AMDeviceNotificationSubscribe(&device_callback, 0, 0, NULL, &notify); 
-	CFRunLoopRun();  
+	CFRunLoopRun();	 
 }
