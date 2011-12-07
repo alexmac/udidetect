@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	if (argc > 1) {
 		if(strcmp(argv[1], "-h") == 0)
 		{
-			printf("usage: %s [-v|-z]\n", argv[0]);
+			printf("usage: %s [-z]\n", argv[0]);
 			exit(1);
 		}
 		else zucchini = (strcmp(argv[1], "-z") == 0);
