@@ -56,10 +56,12 @@ void handle_device(am_device *device)
 		detect_screen(screen, product_type, ios_version);
 		
 		printf("%s:\n  UDID  : %s\n  screen: %s\n\n", device_name, udid, screen);
+		fflush(stdout);
 	}
 	else
 	{
 		printf("%s\n", udid);
+		fflush(stdout);
 		exit(0);
 	}
 }
